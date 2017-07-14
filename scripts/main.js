@@ -8,25 +8,34 @@
    you'll need to parse through that first before you can start to
    write your logic.
 */
-let hand = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
-
+// let hand = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+//
 function handValue(hand) {
-    return hand.reduce(function(s, v) {
-      return s + v;
-    });
+  return hand.reduce((acc,val) => {
+    if (val === 'A') {
+      if (acc > 21 || (acc + 11) > 21){
+        return acc + 1;
+      } else {
+        return acc + 11;
+      }
+    } else if (val === 'K' || val === 'Q' || val === 'J') {
+      if (acc > 21 || (acc + 10) > 21) {
+        acc -= 10;
+      }
+      return acc + 10;
+    } else {
+      if (acc > 21) {
+        acc -= 10;
+      }
+      return acc + parseInt(val);
+    }
+  }, 0);
+};
 
-}
 
 
 
 
-
-// function setAll(a, v) {
-//     var i, n = a.length;
-//     for (i = 0; i < n; ++i) {
-//         a[i] = v;
-//     }
-// }
 /* -----  Hints ------
 
 1..10   ==> Worth face value (1 = 1, 4 = 4, etc)
