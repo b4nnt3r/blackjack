@@ -8,12 +8,11 @@
    you'll need to parse through that first before you can start to
    write your logic.
 */
-// let hand = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
-//
+
 function handValue(hand) {
-  return hand.reduce((acc,val) => {
+  return hand.reduce((acc, val) => {
     if (val === 'A') {
-      if (acc > 21 || (acc + 11) > 21){
+      if (acc > 21 || (acc + 11) > 21) {
         return acc + 1;
       } else {
         return acc + 11;
@@ -31,10 +30,6 @@ function handValue(hand) {
     }
   }, 0);
 };
-
-
-
-
 
 /* -----  Hints ------
 
