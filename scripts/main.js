@@ -9,26 +9,38 @@
    write your logic.
 */
 
+//acc is the accumulator that stores the val each time it is passed.
+//the arrow function essentially replaces function(){} with some important exceptions.
+
+// function handValue(hand) {
+//   hand.reduce(acc, val, index) => {
+//     hand = val !== NaN ? acc+ 1 : acc + 10 && acc > 21 ? acc-10 : acc;
+//     console.log(hand);
+//   }, 0);
+// };
+// if (a > b) {
+//     result = x;
+// } else {
+//     result = y;
+// }
+//
+// result = acc > 21 ? 1++: +10;
+
+
 function handValue(hand) {
   return hand.reduce((acc, val) => {
-    if (val === 'A') {
-      if (acc > 21 || (acc + 11) > 21) {
-        return acc + 1;
-      } else {
-        return acc + 11;
-      }
-    } else if (val === 'K' || val === 'Q' || val === 'J') {
-      if (acc > 21 || (acc + 10) > 21) {
-        acc -= 10;
-      }
+    if (val === 'K' || val === 'Q' || val === 'J') {
       return acc + 10;
+    } else if (val === 'A') {
+      return acc + 1;
     } else {
-      if (acc > 21) {
-        acc -= 10;
-      }
       return acc + parseInt(val);
     }
   }, 0);
+  if (hand.includes('A') && acc < 12) {
+    return acc + 10;
+  }
+  return acc;
 };
 
 /* -----  Hints ------
