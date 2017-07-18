@@ -28,19 +28,20 @@
 
 
 function handValue(hand) {
-  return hand.reduce((acc, val) => {
+  let aceCount = 0;
+  let result = hand.reduce((acc, val) => {
     if (val === 'K' || val === 'Q' || val === 'J') {
       return acc + 10;
     } else if (val === 'A') {
-      return acc + 1;
-    } else {
-      return acc + parseInt(val);
+      aceCount++;
+      return acc + 11;
     }
+    return acc + parseInt(val);
   }, 0);
-  if (hand.includes('A') && acc < 12) {
-    return acc + 10;
+  for (aceCount; aceCount > 0 && result > 21; aceCount--) {
+    result -= 10;
   }
-  return acc;
+  return result;
 };
 
 /* -----  Hints ------
